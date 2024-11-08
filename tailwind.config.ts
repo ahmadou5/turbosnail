@@ -8,9 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // You can add custom colors here if needed
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        gradient: {
+          start: "#0f172a",
+          middle: "#1e3a8a",
+          end: "#0f766e",
+        },
       },
     },
   },
