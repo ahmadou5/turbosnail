@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { XIcon, AlignJustify } from "lucide-react";
+import Link from "next/link";
 
 interface SnailPoolData {
   token_address: string;
@@ -47,7 +48,8 @@ export const Navbar2 = () => {
   const [expand, setExpand] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [poolData, setPoolData] = useState<SnailPoolData | null>(null);
-
+  const buyurl =
+    "https://app.turbos.finance/fun/#/fun/0xe1fe7dbc2da922e7d4eb41adf1c08d8cafc6cc05ececafdb3fbd436e1922096e::snail::SNAIL";
   const url =
     "https://api.turbos.finance/fun/pools/0xe1fe7dbc2da922e7d4eb41adf1c08d8cafc6cc05ececafdb3fbd436e1922096e::snail::SNAIL";
 
@@ -127,9 +129,11 @@ export const Navbar2 = () => {
                 </button>
               ))}
               <div className="mb-0 ml-auto mr-3 ">
-                <button className="border-orange-400/75 border h-9 w-[190px] mt-2 hover:bg-orange-500/70 hover:border-white rounded-lg">
-                  Buy Snail
-                </button>
+                <Link target="blank" href={buyurl}>
+                  <button className="border-orange-400/75 border h-9 w-[190px] mt-2 hover:bg-orange-500/70 hover:border-white rounded-lg">
+                    Buy Snail
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="flex ml-auto mt-2 mr-3 lg:hidden">
@@ -184,9 +188,11 @@ export const Navbar2 = () => {
                 ))}
               </div>
               <div className="mb-4 mt-5">
-                <button className="border-orange-400/75 border h-9 w-[170px] hover:bg-orange-500/70 rounded-lg">
-                  Buy Snail
-                </button>
+                <Link href={buyurl} target="blank">
+                  <button className="border-orange-400/75 border h-9 w-[170px] hover:bg-orange-500/70 rounded-lg">
+                    Buy Snail
+                  </button>
+                </Link>
               </div>
             </div>
           )}

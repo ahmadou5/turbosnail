@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { Copy } from "lucide-react";
 
 export const Hero = () => {
@@ -14,7 +14,8 @@ export const Hero = () => {
       }
     );
   };
-
+  const buyurl =
+    "https://app.turbos.finance/fun/#/fun/0xe1fe7dbc2da922e7d4eb41adf1c08d8cafc6cc05ececafdb3fbd436e1922096e::snail::SNAIL";
   const url1 = {
     first:
       "https://wallpapers.com/images/hd/turbo-over-dark-backdrop-jhe1dgo3w7p72ycq.jpg",
@@ -37,9 +38,11 @@ export const Hero = () => {
         <h1 className="text-4xl md:text-6xl mt-[120px] font-bold text-white mb-6">
           Only on Turbos.fun
         </h1>
-        <button className="mt-8 px-6 py-3 bg-white/25 border-orange-400/60 border hover:bg-orange-500 text-white rounded-lg transition-colors duration-300">
-          Buy $Snail
-        </button>
+        <Link target="blank" href={buyurl}>
+          <button className="mt-8 px-6 py-3 bg-white/25 border-orange-400/60 border hover:bg-orange-500 text-white rounded-lg transition-colors duration-300">
+            Buy $Snail
+          </button>
+        </Link>
         <p className="text-lg md:text-xl text-white max-w-2xl mt-20 mx-auto leading-relaxed">
           Snails are Slow and Sluggish but they{" "}
           <span className="h-10 bg-black/30 w-auto p-1 rounded-xl text-xl ">
