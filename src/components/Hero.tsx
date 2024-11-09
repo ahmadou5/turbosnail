@@ -1,8 +1,14 @@
 "use client";
 import Link from "next/link";
 import { Copy } from "lucide-react";
-
+import { SnailPoolData } from "@/interface/model.interface";
+import { useEffect, useState } from "react";
+import axios from "axios";
 export const Hero = () => {
+  //const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [poolData, setPoolData] = useState<SnailPoolData | null>(null);
+  const tokenAdress =
+    "0xe1fe7dbc2da922e7d4eb41adf1c08d8cafc6cc05ececafdb3fbd436e1922096e::snail::SNAIL";
   const hanleCopy = (value: string) => {
     navigator.clipboard.writeText(value).then(
       () => {
@@ -14,6 +20,11 @@ export const Hero = () => {
       }
     );
   };
+
+  const formatAddress = (value: string) => {
+    return value.substring(0, 15) + "...." + value.substring(value.length - 12);
+  };
+
   const buyurl =
     "https://app.turbos.finance/fun/#/fun/0xe1fe7dbc2da922e7d4eb41adf1c08d8cafc6cc05ececafdb3fbd436e1922096e::snail::SNAIL";
   const url1 = {
@@ -23,6 +34,24 @@ export const Hero = () => {
     third: "https://i.ytimg.com/vi/_sjzBa3kVQM/maxresdefault.jpg",
     for: "/turbo2.jpg",
   };
+
+  const url =
+    "https://api.turbos.finance/fun/pools/0xe1fe7dbc2da922e7d4eb41adf1c08d8cafc6cc05ececafdb3fbd436e1922096e::snail::SNAIL";
+
+  useEffect(() => {
+    const fetchPoolData = async () => {
+      try {
+        const response = await axios.get<SnailPoolData>(url);
+        console.log(response.data, "data");
+        //setIsLoading(false);
+        setPoolData(response?.data);
+      } catch (error) {
+        console.error("Error fetching pool data:", error);
+      }
+    };
+
+    fetchPoolData();
+  }, []);
 
   return (
     <div className="relative h-screen w-full">
@@ -44,26 +73,16 @@ export const Hero = () => {
           </button>
         </Link>
         <p className="text-lg md:text-xl text-white max-w-2xl mt-20 mx-auto leading-relaxed">
-          Snails are Slow and Sluggish but they{" "}
-          <span className="h-10 bg-black/30 w-auto p-1 rounded-xl text-xl ">
-            Courageous
-          </span>{" "}
-          and Never{" "}
-          <span className="h-10 bg-black/30 w-auto p-1 rounded-xl text-xl ">
-            tired
-          </span>
+          {poolData?.description ||
+            "Turbosnail is The ultimate meme token launch on turbos.fun ! Join the slow and steady race to the moon, powered by community. movement and watch it inch its way to the top"}
         </p>
         <div className="mt-[200px] w-[100%]">
-          <div className="bg-black/40 w-[90%] flex py-4 px-2 ml-auto mr-auto h-14 rounded-full">
+          <div className="bg-black/40 lg:w-[50%] w-[87%] flex py-4 px-2 ml-auto mr-auto h-14 rounded-full">
             <p className="text-white/75 ml-auto mr-4">
-              0xe1fe7dbc2da922e7d4eb41adf1c08d8cafc6cc05ececafdb3fbd436e1922096e::snail::SNAIL
+              {formatAddress(tokenAdress)}
             </p>
             <Copy
-              onClick={() =>
-                hanleCopy(
-                  "0xe1fe7dbc2da922e7d4eb41adf1c08d8cafc6cc05ececafdb3fbd436e1922096e::snail::SNAIL"
-                )
-              }
+              onClick={() => hanleCopy(tokenAdress)}
               className="ml-2 mr-auto"
             />
           </div>

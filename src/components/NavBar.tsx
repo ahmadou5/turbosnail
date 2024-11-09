@@ -3,47 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { XIcon, AlignJustify } from "lucide-react";
 import Link from "next/link";
-
-interface SnailPoolData {
-  token_address: string;
-  created_at: string;
-  is_completed: boolean;
-  real_sui_reserves: string;
-  real_token_reserves: string;
-  bonding_curve: string;
-  created_by: string;
-  deployment_fee: string;
-  description: string;
-  full_updated: boolean;
-  lp_type: number;
-  market_cap_sui: number;
-  market_cap_usd: number;
-  name: string;
-  pool_id: string;
-  remain_token_reserves: string;
-  symbol: string;
-  telegram: string;
-  token_metadata: {
-    decimals: number;
-    name: string;
-    symbol: string;
-    description: string;
-    iconUrl: string;
-  };
-  token_price_sui: number;
-  token_price_usd: number;
-  token_supply: string;
-  twitter: string;
-  updated_at: string;
-  uri: string;
-  virtual_sui_reserves: string;
-  virtual_token_reserves: string;
-  volume_24h_sui: number;
-  volume_24h_usd: number;
-  volume_sui: string;
-  volume_usd: string;
-  website: string;
-}
+import { SnailPoolData } from "@/interface/model.interface";
 export const Navbar2 = () => {
   const [expand, setExpand] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -108,7 +68,7 @@ export const Navbar2 = () => {
                           src="data:image/png;base64,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"
                           className="h-7 w-7 ml-1  mr-1 rounded-full"
                         />
-                        {`Price USD: $${poolData?.token_price_usd.toFixed(9)}`}
+                        {`Price USDT: $${poolData?.token_price_usd.toFixed(9)}`}
                       </>
                     )}
                   </div>
@@ -147,7 +107,7 @@ export const Navbar2 = () => {
 
           {expand && (
             <div className="flex h-[180px] flex-col rounded-b-2xl items-center justify-center  mt-0 lg:hidden">
-              <div className="ml-auto mr-auto flex flex-col mb-2">
+              <div className="ml-3 mr-auto flex flex-col mb-2">
                 {["Snail"].map((item) => (
                   <div
                     key={item}
@@ -155,7 +115,7 @@ export const Navbar2 = () => {
                   >
                     <div className="flex items-center mb-1  justify-center">
                       {isLoading ? (
-                        <div className="h-10 w-[40px] rounded-2xl bg-slate-400/30 animate-pulse"></div>
+                        <div className="h-7 w-[180px] rounded-xl bg-slate-400/30 animate-pulse"></div>
                       ) : (
                         <>
                           {" "}
@@ -163,7 +123,7 @@ export const Navbar2 = () => {
                             src="data:image/png;base64,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"
                             className="h-6 w-6 ml-1  mr-1 rounded-full"
                           />
-                          {`Price USD: $${poolData?.token_price_usd.toFixed(
+                          {`Price USDT: $${poolData?.token_price_usd.toFixed(
                             9
                           )}`}
                         </>
@@ -171,7 +131,7 @@ export const Navbar2 = () => {
                     </div>
                     <div className="flex items-center mt-1 justify-center">
                       {isLoading ? (
-                        <div className="h-10 w-[40px]  rounded-2xl bg-slate-400/30  animate-pulse"></div>
+                        <div className="h-7 w-[180px] rounded-xl bg-slate-400/30 animate-pulse"></div>
                       ) : (
                         <>
                           <img
