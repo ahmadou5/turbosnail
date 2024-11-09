@@ -1,29 +1,12 @@
 "use client";
 import Link from "next/link";
-import { Copy } from "lucide-react";
+
 import { SnailPoolData } from "@/interface/model.interface";
 import { useEffect, useState } from "react";
 import axios from "axios";
 export const Hero = () => {
   //const [isLoading, setIsLoading] = useState<boolean>(true);
   const [poolData, setPoolData] = useState<SnailPoolData | null>(null);
-  const tokenAdress =
-    "0xe1fe7dbc2da922e7d4eb41adf1c08d8cafc6cc05ececafdb3fbd436e1922096e::snail::SNAIL";
-  const hanleCopy = (value: string) => {
-    navigator.clipboard.writeText(value).then(
-      () => {
-        alert("Copied.Successfully");
-      },
-      (err) => {
-        // Failed to copy to clipboard
-        console.log(err);
-      }
-    );
-  };
-
-  const formatAddress = (value: string) => {
-    return value.substring(0, 15) + "...." + value.substring(value.length - 12);
-  };
 
   const buyurl =
     "https://app.turbos.finance/fun/#/fun/0xe1fe7dbc2da922e7d4eb41adf1c08d8cafc6cc05ececafdb3fbd436e1922096e::snail::SNAIL";
@@ -54,7 +37,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <div className="relative h-screen w-full">
+    <div className="relative h-screen mb-10 w-full">
       <div
         className="absolute inset-0 w-full h-[900px] mt-[0px] bg-cover bg-center bg-no-repeat"
         style={{
@@ -76,17 +59,6 @@ export const Hero = () => {
           {poolData?.description ||
             "Turbosnail is The ultimate meme token launch on turbos.fun ! Join the slow and steady race to the moon, powered by community. movement and watch it inch its way to the top"}
         </p>
-        <div className="mt-[200px] w-[100%]">
-          <div className="bg-black/40 lg:w-[50%] w-[87%] flex py-4 px-2 ml-auto mr-auto h-14 rounded-full">
-            <p className="text-white/75 ml-auto mr-4">
-              {formatAddress(tokenAdress)}
-            </p>
-            <Copy
-              onClick={() => hanleCopy(tokenAdress)}
-              className="ml-2 mr-auto"
-            />
-          </div>
-        </div>
       </div>
     </div>
   );

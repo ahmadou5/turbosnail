@@ -38,3 +38,30 @@ export interface SnailPoolData {
   volume_usd: string;
   website: string;
 }
+
+export interface TokenMetadata {
+  decimals: number;
+  name: string;
+  symbol: string;
+  description: string;
+  iconUrl: string;
+  id: string;
+}
+
+export interface Trade {
+  sender: string;
+  is_buy: boolean;
+  sui_amount: number;
+  token_amount: number;
+  timestamp: string;
+  tx_digest: string;
+  token_address: string;
+  pool_id: string;
+}
+
+export interface ApiResponse {
+  page: number;
+  pageSize: number;
+  total: number;
+  data: Trade[];
+}
