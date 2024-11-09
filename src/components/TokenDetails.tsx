@@ -27,7 +27,7 @@ export const Token = () => {
   }, []);
 
   return (
-    <div className="mb-10 lg:w-[93%] ml-auto mr-auto p-4 lg:mt-[200px] mt-16">
+    <div className="mb-10 lg:w-[93%] ml-auto mr-auto p-4 lg:mt-[200px] mt-[150px]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 bg-black/0 bg-opacity-25 rounded-xl p-4 items-center justify-center">
         <div className="text-center md:text-left">
           <div className="text-gray-400 text-sm md:mb-1">Price $SUI</div>
